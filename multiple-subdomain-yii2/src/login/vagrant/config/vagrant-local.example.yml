@@ -10,10 +10,10 @@ timezone: Europe/London
 box_check_update: false
 
 # Virtual machine name
-machine_name: yii2basic
+machine_name: login.sso-subdomain-yii2.local
 
 # Virtual machine IP
-ip: 192.168.83.137
+ip: 192.168.80.100
 
 # Virtual machine CPU cores number
 cpus: 1

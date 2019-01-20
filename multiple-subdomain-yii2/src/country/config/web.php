@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'Country',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -14,7 +15,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
+            'cookieValidationKey' => '-xgXpIztef26QPXq6MRLpsq9h2QupWpO',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -22,6 +23,19 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'identityCookie' => [
+                'name' => '_identity',
+                'httpOnly' => true,
+                'domain' => '.sso-subdomain-yii2.local',
+            ],
+        ],
+        'session' => [
+            'cookieParams' => [
+                'domain' => '.sso-subdomain-yii2.local',
+                'path' => '/',
+                'httpOnly' => true,
+                'secure' => false,
+            ],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
