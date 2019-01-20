@@ -6,6 +6,11 @@ Nhưng việc tìm hiểu về SSO tương đối phức tạp, có quá nhiều
 
 Cho nên quyết định tự thực hành để hiểu rõ hơn về các giải pháp này.
 
+## Terminology
+
+* **sso-server** An system that hold the information to authentication the user (username and password for example).
+* **sso-consumer** System that users access to do their work. To use the function of sso-consumer, users must login and is redirected to sso-sever for logging in.
+
 ## References
 
 * [Building SSO from scratch in nodejs](https://codeburst.io/building-a-simple-single-sign-on-sso-server-and-solution-from-scratch-in-node-js-ea6ee5fdf340)
