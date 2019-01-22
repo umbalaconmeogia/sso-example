@@ -60,10 +60,16 @@ Add the following lines into the *hosts* file (on Windows, it is *C:\Windows\Sys
   vagrant up --provision
   ```
   again and it may be OK.
+  
+  This will update your client PC's *hosts* file, adding sub-system's domains into *hosts*. 
 
 ## Test
 
-* Open 
+* Access URLS
+  * http://login.sso-subdomain-yii2.local
+  * http://country.sso-subdomain-yii2.local
+  * http://people.sso-subdomain-yii2.local
+* Open
   Account: admin, Password: admin
   Account: demo, Password: demo
 
@@ -73,7 +79,7 @@ Add the following lines into the *hosts* file (on Windows, it is *C:\Windows\Sys
 
 ## Dev memo
 
-### Prepare source code
+### Setup vagrant
 
 Within each sub-system, first edit the original code as below:
 1. Update *Vagrantfile*, change domains/app (this is the name of VM on VirtualBox). For example:
@@ -84,6 +90,10 @@ Within each sub-system, first edit the original code as below:
   ```
 2. Update *config/web.php*, edit *user* and *session*. For example:
   ```
+    'request' => [
+        // cookieValidationKey should be the same in all system.
+        'cookieValidationKey' => '-xgXpIztef26QPXq6MRLpsq9h2QupWpO',
+    ],  
     'user' => [
         'identityClass' => 'app\models\User',
         'enableAutoLogin' => true,
@@ -118,4 +128,11 @@ Within each sub-system, first edit the original code as below:
 
     access_log  /app/vagrant/nginx/log/country.sso-subdomain-yii2.local.access.log;
     error_log   /app/vagrant/nginx/log/country.sso-subdomain-yii2.local.error.log;  
+  ```
+5. Goto *vagrant/config* folder, copy *vagrant-local.example.yml* to *vagrant-local.yml* in same folder.
+  Open *vagrant-local.yml*, paste your personal github token.
+  ```
+    github_token: <your-personal-github-token>
+    # Read more: https://github.com/blog/1509-personal-api-tokens
+    # You can generate it here: https://github.com/settings/tokens
   ```
