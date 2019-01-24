@@ -44,8 +44,8 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
         ],
     ];
-    $items[] = ['label' => 'People', 'url' => 'http://people.sso-subdomain-yii2.local', 'linkOptions' => ['target' => 'sso_people']];
-    $items[] = ['label' => 'Country', 'url' => 'http://country.sso-subdomain-yii2.local', 'linkOptions' => ['target' => 'sso_country']];
+    $items[] = ['label' => 'People', 'url' => 'http://people.sso-subdomain-yii2.local/?r=people', 'linkOptions' => ['target' => 'sso_people']];
+    $items[] = ['label' => 'Country', 'url' => 'http://country.sso-subdomain-yii2.local/?r=country', 'linkOptions' => ['target' => 'sso_country']];
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {

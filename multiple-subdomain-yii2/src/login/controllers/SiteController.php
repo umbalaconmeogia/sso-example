@@ -64,6 +64,19 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public $loginReturnUrlParam = 'loginReturnUrl';
+
+    /**
+     * Return loginReturnUrl that is saved in session, also delete it from session.
+     * @return string
+     */
+    private function popLoginReturnUrl()
+    {
+        $loginUrl = \Yii::$app->session[$this->loginReturnUrlParam];
+        unset(\Yii::$app->session[$this->loginReturnUrlParam]);
+        return $loginUrl;
+    }
+
     /**
      * Login action.
      *
@@ -71,13 +84,29 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        // If user accesses to site/login directly from browser.
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
+        $loginReturnUrl = isset($_REQUEST['returnUrl']) ? $_REQUEST['returnUrl'] : null;
+        if ($loginReturnUrl) { // If login is requested from sub-system.
+            // Remember returnUrl into session.
+            \Yii::$app->session[$this->loginReturnUrlParam] = $loginReturnUrl;
+        } else {
+            // Clear loginReturnUrl that saved in session if login from "login" system itself.
+            $this->popLoginReturnUrl();
+        }
+
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) { // Login successfully
+            // Redirect to loginReturnUrl if is requested login from other sub-system.
+            $loginReturnUrl = $this->popLoginReturnUrl();
+            if ($loginReturnUrl) {
+                return $this->redirect($loginReturnUrl);
+            } else {
+                return $this->goBack();
+            }
         }
 
         $model->password = '';

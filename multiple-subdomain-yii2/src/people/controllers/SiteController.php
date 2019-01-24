@@ -69,21 +69,33 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
+    /**
+     * Login action.
+     *
+     * @return Response|string
+     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
 
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
+        return $this->redirectLoginUrl();
+    }
+
+    /**
+     * Redirect to login url.
+     * @return \yii\web\Response
+     */
+    private function redirectLoginUrl()
+    {
+        // TODO: Want to redirect to current page, not site/login page.
+        $htmlQuery = http_build_query(['returnUrl' => \Yii::$app->request->getAbsoluteUrl()]);
+        $url = join((strpos(\Yii::$app->params['loginUrl'], '?') === false) ? '?' : '&', [
+            \Yii::$app->params['loginUrl'],
+            $htmlQuery,
         ]);
+        return $this->redirect($url);
     }
 
     /**
