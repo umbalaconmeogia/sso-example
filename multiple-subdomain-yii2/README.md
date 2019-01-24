@@ -89,7 +89,7 @@ Within each sub-system, first edit the original code as below:
     }
   ```
 2. Update *config/web.php*, edit *user* and *session*. For example:
-  ```
+  ```php
     'request' => [
         // cookieValidationKey should be the same in all system.
         'cookieValidationKey' => '-xgXpIztef26QPXq6MRLpsq9h2QupWpO',
@@ -136,3 +136,9 @@ Within each sub-system, first edit the original code as below:
     # Read more: https://github.com/blog/1509-personal-api-tokens
     # You can generate it here: https://github.com/settings/tokens
   ```
+
+### Login flow in login-system and sub-systems
+
+* On sub-system, if user is not login, then redirect to login url (in login system), with *returnUrl* parameter.
+* On login-system, remember *returnUrl* into session if specified.
+* On login-system, if login successfully and *returnUrl* is specified, then redirect to *returnUrl*.
