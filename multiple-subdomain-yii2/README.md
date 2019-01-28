@@ -15,7 +15,7 @@ In this example, we have 3 sub systems:
 
 * When access to any sub-system, if user is not logged in, then the user is redirected to *Login* sub-system to login.
 * If user is logged in, then he can use the accessing system's function.
-* This sub-systems are started in Vagrant environtments on an PC, in which the client web browser is opened for accessing to them.
+* These sub-systems are started in Vagrant environtments on an PC, on which the client web browser is opened for accessing to them.
 
 ## Setup
 
@@ -76,6 +76,8 @@ Add the following lines into the *hosts* file (on Windows, it is *C:\Windows\Sys
 ## References
 
 * [How to make properly cross-subdomain authentication with Yii2 on Stackoverflow](https://stackoverflow.com/questions/34581602/how-to-make-properly-cross-subdomain-authentication-with-yii2/34704193)
+
+* [yii2-cookbook::Managing cookies](https://github.com/samdark/yii2-cookbook/blob/master/book/cookies.md#cross-subdomain-authentication-and-identity-cookies)
 
 ## Dev memo
 
