@@ -35,6 +35,7 @@ $config = [
                 'path' => '/',
                 'httpOnly' => true,
                 'secure' => false,
+//                 'savePath' => '@app/runtime',
             ],
         ],
         'errorHandler' => [

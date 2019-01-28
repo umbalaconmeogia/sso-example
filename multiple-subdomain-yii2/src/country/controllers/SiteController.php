@@ -135,11 +135,12 @@ class SiteController extends Controller
 
     public function actionTestSession()
     {
-        $key = 'testValue';
+        $key = 'testSession';
         $setValue = Yii::$app->request->post($key);
         if ($setValue) {
             Yii::$app->session[$key] = $setValue;
         }
+
         return $this->render('testSession');
     }
 }
