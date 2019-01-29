@@ -11,6 +11,8 @@ In this example, we have 3 sub systems:
 
 *Country* and *People* data has no relation here. It just describes that they are different sub-systems.
 
+**This example code has a problem. Although it can share login between subdomains, setting data in session of a sub-system will clear all data in another sub-system's session (in fact, it changed PHPSESSIONID's value). I don't know why and has not resolved it. There is demo pages on http://peole.sso-subdomain-yii2.local/?r=site/test-session and http://country.sso-subdomain-yii2.local/?r=site/test-session for this problem.**
+
 ## Specification
 
 * When access to any sub-system, if user is not logged in, then the user is redirected to *Login* sub-system to login.
