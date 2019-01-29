@@ -113,6 +113,7 @@ Within each sub-system, first edit the original code as below:
         ],
     ],
     'session' => [
+        'name' => 'PHPSESSID_country', // Set name different to each sub-systems.
         'cookieParams' => [
             'domain' => '.sso-subdomain-yii2.local',
             'path' => '/',
