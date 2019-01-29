@@ -11,7 +11,12 @@ In this example, we have 3 sub systems:
 
 *Country* and *People* data has no relation here. It just describes that they are different sub-systems.
 
-**This example code has a problem. Although it can share login between subdomains, setting data in session of a sub-system will clear all data in another sub-system's session (in fact, it changed PHPSESSIONID's value). I don't know why and has not resolved it. There is demo pages on http://peole.sso-subdomain-yii2.local/?r=site/test-session and http://country.sso-subdomain-yii2.local/?r=site/test-session for this problem.**
+Points are:
+1. Config *request/cookieValidationKey* to same value on all sub-systems.
+2. Config *user/identityCookie* to same value on all sub-systems.
+3. Config *session/cookieParams* to same value on all sub-systems. Especially, the *domain* part of *user/identityCookie* and *session/cookieParams* should be the same.
+4. Config *session/name* to different value on all sub-systems. This is the cookie key to store session id.
+5. Edit actionLogin of *people* and *country* system so that they redirect to *login* system.
 
 ## Specification
 

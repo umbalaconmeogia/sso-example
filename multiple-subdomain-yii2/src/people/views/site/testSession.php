@@ -9,7 +9,6 @@ use yii\helpers\Html;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= Html::textInput('testSession') ?>
-    <?= Html::textInput('testFlash') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>

@@ -30,6 +30,7 @@ $config = [
             ],
         ],
         'session' => [
+            'name' => 'PHPSESSID_country',
             'cookieParams' => [
                 'domain' => '.sso-subdomain-yii2.local',
                 'path' => '/',
