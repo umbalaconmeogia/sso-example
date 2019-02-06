@@ -32,7 +32,7 @@ $config = [
             ],
         ],
         'session' => [
-            'name' => 'PHPSESSID_people',
+            'name' => 'sso-sessid-people',
             'cookieParams' => [
                 'domain' => $cookieDomain,
                 'path' => '/',

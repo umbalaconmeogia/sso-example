@@ -1,5 +1,7 @@
 # SSO on subdomains on yii2
 
+*TODO: Must implement sub-systems' User::findIdentity() to retrieve data from login system*
+
 ## Overview
 
 This is explanation and example code of how to config yii2 applications so that they can share single sign on in subdomains.
@@ -69,6 +71,16 @@ Add the following lines into the *hosts* file (on Windows, it is *C:\Windows\Sys
   again and it may be OK.
   
   This will update your client PC's *hosts* file, adding sub-system's domains into *hosts*. 
+
+### Initite user database
+
+Login to *login* server, run yii migrate and command to create user data.
+```shell
+vagrant ssh
+cd /app
+./yii migrate
+./yii user/create-user --username=admin --password=admin
+```
 
 ## Test
 

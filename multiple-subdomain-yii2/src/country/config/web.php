@@ -32,7 +32,7 @@ $config = [
             ],
         ],
         'session' => [
-            'name' => 'PHPSESSID_country',
+            'name' => 'sso-sessid-country',
             'cookieParams' => [
                 'domain' => $cookieDomain,
                 'path' => '/',

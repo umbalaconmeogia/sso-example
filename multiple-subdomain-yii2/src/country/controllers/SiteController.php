@@ -94,15 +94,27 @@ class SiteController extends Controller
     }
 
     /**
+     * Redirect to login url.
+     * @return \yii\web\Response
+     */
+    private function redirectLogoutUrl()
+    {
+        $htmlQuery = http_build_query(['returnUrl' => \yii\helpers\Url::home(true)]);
+        $url = join((strpos(\Yii::$app->params['logoutUrl'], '?') === false) ? '?' : '&', [
+            \Yii::$app->params['logoutUrl'],
+            $htmlQuery,
+        ]);
+        return $this->redirect($url);
+    }
+
+    /**
      * Logout action.
      *
      * @return Response
      */
     public function actionLogout()
     {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+        return $this->redirectLogoutUrl();
     }
 
     /**

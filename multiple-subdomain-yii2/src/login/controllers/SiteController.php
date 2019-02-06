@@ -29,12 +29,6 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
         ];
     }
 
@@ -89,10 +83,11 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $loginReturnUrl = isset($_REQUEST['returnUrl']) ? $_REQUEST['returnUrl'] : null;
-        if ($loginReturnUrl) { // If login is requested from sub-system.
+        // Process URL parameter "returnUrl"
+        $returnUrl = isset($_REQUEST['returnUrl']) ? $_REQUEST['returnUrl'] : null;
+        if ($returnUrl) { // If login is requested from sub-system.
             // Remember returnUrl into session.
-            \Yii::$app->session[$this->loginReturnUrlParam] = $loginReturnUrl;
+            \Yii::$app->session[$this->loginReturnUrlParam] = $returnUrl;
         } else {
             // Clear loginReturnUrl that saved in session if login from "login" system itself.
             $this->popLoginReturnUrl();
@@ -100,10 +95,10 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) { // Login successfully
-            // Redirect to loginReturnUrl if is requested login from other sub-system.
-            $loginReturnUrl = $this->popLoginReturnUrl();
-            if ($loginReturnUrl) {
-                return $this->redirect($loginReturnUrl);
+            // Redirect to returnUrl if is requested login from other sub-system.
+            $returnUrl = $this->popLoginReturnUrl();
+            if ($returnUrl) {
+                return $this->redirect($returnUrl);
             } else {
                 return $this->goBack();
             }
@@ -122,9 +117,25 @@ class SiteController extends Controller
      */
     public function actionLogout()
     {
+        // Process URL parameter "returnUrl"
+        $returnUrl = isset($_REQUEST['returnUrl']) ? $_REQUEST['returnUrl'] : null;
+
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        // Clear session id key of all sub-domains in cookie.
+        foreach ($_COOKIE as $key => $value) {
+            if (strpos($key, \Yii::$app->params['sso']['sessIdPrefix']) !== FALSE) {
+                echo "$key, " . \Yii::$app->params['sso']['domain'] . "<br />";
+                setcookie($key, $value, time() - 3600, null, \Yii::$app->params['sso']['domain']);
+            }
+        };
+
+        // Redirect to returnUrl if is requested login from other sub-system.
+        if ($returnUrl) {
+            return $this->redirect($returnUrl);
+        } else {
+            return $this->goHome();
+        }
     }
 
     /**

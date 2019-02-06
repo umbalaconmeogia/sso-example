@@ -6,4 +6,8 @@ return [
         'People' => 'http://people.sso-subdomain-yii2.local/?r=people',
 	    'Country' => 'http://country.sso-subdomain-yii2.local/?r=country',
 	],
+    'sso' => [
+        'sessIdPrefix' => 'sso-sessid-',
+        'domain' => '.sso-subdomain-yii2.local',
+    ],
 ];

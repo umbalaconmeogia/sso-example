@@ -24,4 +24,8 @@ use yii\helpers\Html;
     <pre>
 	    <?= print_r($_COOKIE, true) ?>
     </pre>
+    <h2>\Yii::$app->request->cookies</h2>
+    <pre>
+	    <?= print_r(\Yii::$app->request->cookies, true) ?>
+    </pre>
 </div>
