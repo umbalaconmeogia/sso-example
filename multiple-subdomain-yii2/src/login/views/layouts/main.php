@@ -44,8 +44,10 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
         ],
     ];
-    $items[] = ['label' => 'People', 'url' => 'http://people.sso-subdomain-yii2.local/?r=people', 'linkOptions' => ['target' => 'sso_people']];
-    $items[] = ['label' => 'Country', 'url' => 'http://country.sso-subdomain-yii2.local/?r=country', 'linkOptions' => ['target' => 'sso_country']];
+	$items[] = ['label' => 'TestSession', 'url' => ['/site/test-session']];
+	foreach (\Yii::$app->params['menuItems'] as $title => $url) {
+        $items[] = ['label' => $title, 'url' => $url, 'linkOptions' => ['target' => "sso_$title"]];		
+	}
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {

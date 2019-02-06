@@ -154,4 +154,15 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionTestSession()
+    {
+        $key = 'testSession';
+        $setValue = Yii::$app->request->post($key);
+        if ($setValue) {
+            Yii::$app->session[$key] = $setValue;
+        }
+
+        return $this->render('testSession');
+    }
 }

@@ -44,10 +44,10 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
         ],
     ];
+	$items[] = ['label' => 'TestSession', 'url' => ['/site/test-session']];
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $items[] = ['label' => 'TestSession', 'url' => ['/site/test-session']];
         $items[] = ['label' => 'Countries', 'url' => ['/country']];
         $items[] = '<li>'
         . Html::beginForm(['/site/logout'], 'post')

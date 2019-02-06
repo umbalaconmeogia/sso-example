@@ -3,6 +3,8 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
+$cookieDomain = '.sso-subdomain-yii2.local';
+
 $config = [
     'id' => 'basic',
     'name' => 'People',
@@ -26,17 +28,16 @@ $config = [
             'identityCookie' => [
                 'name' => '_identity',
                 'httpOnly' => true,
-                'domain' => '.sso-subdomain-yii2.local',
+                'domain' => $cookieDomain,
             ],
         ],
         'session' => [
             'name' => 'PHPSESSID_people',
             'cookieParams' => [
-                'domain' => '.sso-subdomain-yii2.local',
+                'domain' => $cookieDomain,
                 'path' => '/',
                 'httpOnly' => true,
                 'secure' => false,
-//                 'savePath' => '@app/runtime',
             ],
         ],
         'errorHandler' => [
