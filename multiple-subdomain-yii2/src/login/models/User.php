@@ -73,7 +73,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne($id);
+        return static::findOne(['username' => $id]);
     }
 
     /**
@@ -102,7 +102,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getId()
     {
-        return $this->id;
+        return $this->username;
     }
 
     /**
