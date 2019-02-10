@@ -1,8 +1,7 @@
 # SSO on subdomains on yii2
 
-**Now there is an extension [umbalaconmeogia/yii2-ssosubdomain](https://github.com/umbalaconmeogia/yii2-ssosubdomain) to help impelementing this easily**
-
-*TODO: Must implement sub-systems' User::findIdentity() to retrieve data from login system*
+**This example will not be updated anymore. There are some bugs in the code.<br />
+Now there is an extension [umbalaconmeogia/yii2-ssosubdomain](https://github.com/umbalaconmeogia/yii2-ssosubdomain) to help impelementing SSO on subdomain easily.**
 
 ## Overview
 
